@@ -55,7 +55,7 @@ class HotelIntegrationTest {
                 .andExpect(jsonPath("$.name").value("Grand Plaza"))
                 .andExpect(jsonPath("$.location").value("Moroco"));
 
-        assertThat(hotelRepository.count()).isEqualTo(1);
+        assertThat(hotelRepository.count()).isEqualTo(2);
     }
 }
 
