@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+// Hotel entity
 @Entity
 public class Hotel {
     @Id
