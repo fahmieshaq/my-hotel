@@ -1,0 +1,31 @@
+# Grafana provisioning configuration version.
+apiVersion: 1
+
+# Define data sources that Grafana should configure automatically.
+datasources:
+  #### New Prometheus data source
+  - name: Prometheus
+
+    # Prometheus is the data source type.
+    type: prometheus
+
+    # Grafana accesses Prometheus through Docker's internal network.
+    url: http://prometheus:9090
+
+    # Grafana's backend communicates with Prometheus.
+    access: proxy
+
+    # Make Prometheus the default data source.
+    isDefault: true
+
+    # Prevent accidental deletion through Grafana's UI.
+    editable: false
+
+  #### New Loki data source
+  - name: Loki
+    uid: loki
+    type: loki
+    url: http://loki:3100
+    access: proxy
+    isDefault: false
+    editable: false

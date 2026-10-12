@@ -1,0 +1,12 @@
+apiVersion: 1
+
+providers:
+  - name: Hotel API Dashboards
+    orgId: 1
+    folder: Hotel API
+    type: file
+    disableDeletion: true
+    editable: false
+
+    options:
+      path: /etc/grafana/provisioning/dashboards/json

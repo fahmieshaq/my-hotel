@@ -1,0 +1,22 @@
+# How frequently Prometheus collects metrics by default.
+global:
+  scrape_interval: 15s
+
+# Define which applications Prometheus should monitor.
+scrape_configs:
+
+  # Name identifying our Hotel API in Prometheus.
+  - job_name: "hotel-api"
+
+    # Spring Boot Actuator's Prometheus endpoint.
+    metrics_path: "/actuator/prometheus"
+
+    # Collect metrics from the Hotel API every 15 seconds.
+    scrape_interval: 15s
+
+    # Applications Prometheus should scrape.
+    static_configs:
+      - targets:
+          # Hotel API running on the host machine.
+          # Docker Desktop resolves this to the host.
+          - "hotel-api:8080"

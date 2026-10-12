@@ -1,0 +1,118 @@
+services:
+
+  # Prometheus collects and stores application metrics.
+  prometheus:
+    image: prom/prometheus:v3.5.0
+
+    # Give the container a recognizable name.
+    container_name: hotel-prometheus
+
+    # Restart automatically unless manually stopped.
+    restart: unless-stopped
+
+    # Expose Prometheus locally on port 9090.
+    ports:
+      - "127.0.0.1:9090:9090"
+
+    # Mount our configuration into the container.
+    volumes:
+      - ./observability/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+      # Persist collected metrics between container restarts.
+      - prometheus-data:/prometheus
+
+    # Start Prometheus with our configuration.
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+
+  # Grafana provides dashboards and alerting.
+  grafana:
+    image: grafana/grafana:12.3.1
+
+    container_name: hotel-grafana
+
+    # Restart automatically unless manually stopped.
+    restart: unless-stopped
+
+    # Make Grafana accessible only from your local machine.
+    ports:
+      - "127.0.0.1:3000:3000"
+
+    # Persist Grafana dashboards, users, and settings.
+    volumes:
+      - grafana-data:/var/lib/grafana
+      # Automatically configure Grafana data sources at startup.
+      - ./observability/grafana/provisioning:/etc/grafana/provisioning:ro
+
+    # Prometheus must be started before Grafana.
+    # This does not guarantee Prometheus is healthy.
+    depends_on:
+      - prometheus
+
+  # Loki stores application logs for querying through Grafana.
+  loki:
+    image: grafana/loki:3.5.0
+    container_name: hotel-loki
+    restart: unless-stopped
+
+    # Only expose Loki to the local machine.
+    ports:
+      - "127.0.0.1:3100:3100"
+
+    # Mount the configuration and persist stored logs.
+    volumes:
+      - ./observability/loki/loki.yml:/etc/loki/loki.yml:ro
+      - loki-data:/loki
+
+    # Start Loki using our configuration.
+    command:
+      - "-config.file=/etc/loki/loki.yml"
+
+  alloy:
+    image: grafana/alloy:v1.10.2
+    container_name: hotel-alloy
+    restart: unless-stopped
+
+    volumes:
+      # Alloy configuration.
+      - ./observability/alloy/config.alloy:/etc/alloy/config.alloy:ro
+
+      # Allows Alloy to discover containers and read Docker logs.
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      # Persist Alloy state across restarts.
+      - alloy-data:/var/lib/alloy/data
+
+    command:
+      - run
+      - /etc/alloy/config.alloy
+      - --storage.path=/var/lib/alloy/data
+
+    depends_on:
+      - loki
+
+  hotel-api:
+    # Use the Docker image we just built.
+    image: hotel-api:local
+
+    container_name: hotel-api
+    restart: unless-stopped
+
+    # Expose Spring Boot on your Windows machine.
+    ports:
+      - "127.0.0.1:8080:8080"
+
+    # Pass configuration into the Spring Boot container.
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_URL_DEV: ${DB_URL_DEV:?DB_URL_DEV is required}
+      DB_USER_DEV: ${DB_USER_DEV:?DB_USER_DEV is required}
+      DB_PASSWORD_DEV: ${DB_PASSWORD_DEV:?DB_PASSWORD_DEV is required}
+
+# Docker-managed storage for historical metrics.
+volumes:
+  prometheus-data:
+  grafana-data:
+  loki-data:
+  alloy-data:

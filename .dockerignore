@@ -1,0 +1,25 @@
+# .dockerignore prevents unnecessary files and local secrets from entering the Docker build context.
+# Maven output
+target/
+
+# Git metadata
+.git/
+.gitignore
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# Local secrets and configuration
+.env
+.env.*
+!.env.example
+
+# Local application logs
+logs/
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db

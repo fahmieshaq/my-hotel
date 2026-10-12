@@ -31,7 +31,11 @@ public class HotelService {
         Hotel hotel = new Hotel(request.name(), request.location());
         Hotel saved = hotelRepository.save(hotel);
 
-        log.info("Hotel created with id={}", saved.getId());
+        // Record the successful creation using the generated hotel ID.
+        // we don't explicitly pass requestId or correlationId to log.info(). Logback
+        // retrieves them from MDC automatically.
+        log.info("Hotel created successfully. hotelId={}", saved.getId());
+
         return toResponse(saved);
     }
 
@@ -60,7 +64,9 @@ public class HotelService {
         hotel.setLocation(request.location());
         Hotel updated = hotelRepository.save(hotel);
 
-        log.info("Hotel updated with id={}", updated.getId());
+        // Log the successful update.
+        log.info("Hotel updated successfully. hotelId={}", updated.getId());
+
         return toResponse(updated);
     }
 

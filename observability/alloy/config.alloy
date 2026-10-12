@@ -1,0 +1,45 @@
+// Connect to the Docker daemon and discover containers.
+discovery.docker "containers" {
+  host = "unix:///var/run/docker.sock"
+}
+
+// Keep only our Hotel API container.
+discovery.relabel "hotel_api" {
+  targets = discovery.docker.containers.targets
+
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex         = "/hotel-api"
+    action        = "keep"
+  }
+
+  // Label logs so we can search them in Loki.
+  rule {
+    target_label = "job"
+    replacement  = "hotel-api"
+  }
+
+  rule {
+    target_label = "service_name"
+    replacement  = "hotel-api"
+  }
+
+  rule {
+    target_label = "environment"
+    replacement  = "dev"
+  }
+}
+
+// Collect stdout/stderr logs from the Hotel API container.
+loki.source.docker "hotel_api" {
+  host       = "unix:///var/run/docker.sock"
+  targets    = discovery.relabel.hotel_api.output
+  forward_to = [loki.write.local.receiver]
+}
+
+// Forward collected logs to Loki.
+loki.write "local" {
+  endpoint {
+    url = "http://loki:3100/loki/api/v1/push"
+  }
+}

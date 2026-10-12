@@ -175,6 +175,12 @@ public class GlobalExceptionHandler {
     // Http code 500
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleUnexpectedException(Exception ex) {
+        // Log an unexpected application failure.
+        //
+        // Logback automatically adds requestId and correlationId
+        // from MDC when those values are available.
+        log.error("Unexpected application failure: {}", ex.getMessage(), ex);
+
         String[] activeProfiles = environment.getActiveProfiles();
         boolean isDevOrStaging = false;
         for (String profile : activeProfiles) {
@@ -183,8 +189,6 @@ public class GlobalExceptionHandler {
                 break;
             }
         }
-
-        log.error("Unexpected error", ex);
 
         ErrorResponse body = null;
         if (isDevOrStaging) {
