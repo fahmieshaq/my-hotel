@@ -13,6 +13,9 @@ permissions:
   contents: read
 
 jobs:
+  # ==========================================================
+  # JOB 1: Compile and test the Spring Boot application
+  # ==========================================================
   build-and-test:
     name: Build and Test
     runs-on: ubuntu-latest
@@ -34,6 +37,40 @@ jobs:
       - name: Make Maven Wrapper executable
         run: chmod +x ./mvnw
 
-      # Compile the application and execute all tests.
+      # Compile, test, package, and verify the application.
       - name: Build and test
         run: ./mvnw -B clean verify
+
+  # ==========================================================
+  # JOB 2: Build and validate the production Docker image
+  # ==========================================================
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-latest
+
+    # Docker builds only if all tests pass.
+    needs: build-and-test
+
+    steps:
+      # Download the repository source code.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Enable Docker Buildx (modern Docker build engine).
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Build the Docker image.
+      # Do not push it to a registry yet.
+      - name: Build Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          load: true
+          tags: hotel-api:ci
+
+      # Verify that Docker successfully created the image.
+      - name: Verify Docker image
+        run: docker image inspect hotel-api:ci
