@@ -1,0 +1,39 @@
+name: Hotel API CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      # Download the repository source code.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Install Java 21 and cache Maven dependencies.
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      # Make Maven Wrapper executable on Linux.
+      - name: Make Maven Wrapper executable
+        run: chmod +x ./mvnw
+
+      # Compile the application and execute all tests.
+      - name: Build and test
+        run: ./mvnw -B clean verify
