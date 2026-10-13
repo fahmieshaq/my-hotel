@@ -43,7 +43,7 @@ data "aws_iam_policy_document" "github_ecr_trust" {
       variable = "token.actions.githubusercontent.com:sub"
 
       values = [
-        "repo:fahmieshaq/my-hotel:ref:refs/heads/main"
+        "repo:fahmieshaq@22756125/my-hotel@1411763878:ref:refs/heads/main"
       ]
     }
   }
