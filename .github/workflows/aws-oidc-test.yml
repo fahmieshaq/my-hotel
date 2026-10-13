@@ -1,0 +1,24 @@
+name: Verify AWS OIDC
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  verify-aws:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::343482277554:role/hotel-api-github-ecr-publisher
+          aws-region: eu-west-2
+
+      - name: Verify ECR authentication
+        run: |
+          aws ecr get-login-password --region eu-west-2 > /dev/null
+          echo "GitHub Actions successfully authenticated with AWS ECR."

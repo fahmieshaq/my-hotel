@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
+// DTO
 public record BookingResponseDTO(
         Long id,
         String guestName,
