@@ -113,16 +113,16 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           set -euo pipefail
-
+          
           DIGEST=$(aws ecr describe-images \
             --repository-name hotel-api \
             --image-ids imageTag="$IMAGE_TAG" \
             --query 'imageDetails[0].imageDigest' \
             --output text)
-
+          
           test -n "$DIGEST"
           test "$DIGEST" != "None"
-
+          
           echo "image_uri=$ECR_REPOSITORY@$DIGEST" >> "$GITHUB_OUTPUT"
 
   deploy-staging:
@@ -139,6 +139,33 @@ jobs:
       url: https://staging-api.asmreditor.com
 
     steps:
+      - name: Diagnose GitHub OIDC claims
+        shell: bash
+        run: |
+          python3 - <<'PYCODE'
+          import os
+          import json
+          import base64
+          import urllib.request
+          from urllib.parse import urlencode
+          
+          url = os.environ["ACTIONS_ID_TOKEN_REQUEST_URL"]
+          token = os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"]
+          separator = "&" if "?" in url else "?"
+          request = urllib.request.Request(
+              url + separator + urlencode({"audience": "sts.amazonaws.com"}),
+              headers={"Authorization": f"Bearer {token}"},
+          )
+          with urllib.request.urlopen(request) as response:
+              jwt = json.load(response)["value"]
+          
+          payload = jwt.split(".")[1]
+          payload += "=" * (-len(payload) % 4)
+          claims = json.loads(base64.urlsafe_b64decode(payload))
+          for key in ("iss", "aud", "sub", "repository", "environment"):
+              print(f"{key}: {claims.get(key)}")
+          PYCODE
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -151,18 +178,18 @@ jobs:
           IMAGE_URI: ${{ needs.publish-ecr.outputs.image_uri }}
         run: |
           set -euo pipefail
-
+          
           CURRENT_TASK=$(aws ecs describe-services \
             --cluster "$ECS_CLUSTER" \
             --services "$SERVICE" \
             --query 'services[0].taskDefinition' \
             --output text)
-
+          
           aws ecs describe-task-definition \
             --task-definition "$CURRENT_TASK" \
             --query 'taskDefinition' \
             --output json > current-task.json
-
+          
           jq --arg IMAGE "$IMAGE_URI" '
             {
               family,
@@ -190,56 +217,56 @@ jobs:
                 end
               )
           ' current-task.json > new-task.json
-
+          
           NEW_TASK=$(aws ecs register-task-definition \
             --cli-input-json file://new-task.json \
             --query 'taskDefinition.taskDefinitionArn' \
             --output text)
-
+          
           echo "Registered task definition: $NEW_TASK"
-
+          
           aws ecs update-service \
             --cluster "$ECS_CLUSTER" \
             --service "$SERVICE" \
             --task-definition "$NEW_TASK" \
             --query 'service.serviceName' \
             --output text
-
+          
           aws ecs wait services-stable \
             --cluster "$ECS_CLUSTER" \
             --services "$SERVICE"
-
+          
           ACTIVE_TASK=$(aws ecs describe-services \
             --cluster "$ECS_CLUSTER" \
             --services "$SERVICE" \
             --query 'services[0].taskDefinition' \
             --output text)
-
+          
           if [ "$ACTIVE_TASK" != "$NEW_TASK" ]; then
             echo "ERROR: ECS did not retain the new task definition."
             echo "Expected: $NEW_TASK"
             echo "Actual: $ACTIVE_TASK"
             exit 1
           fi
-
+          
           DEPLOYMENT_STATUS=$(aws ecs describe-services \
             --cluster "$ECS_CLUSTER" \
             --services "$SERVICE" \
             --query 'services[0].deployments[?status==`PRIMARY`].rolloutState | [0]' \
             --output text)
-
+          
           if [ "$DEPLOYMENT_STATUS" != "COMPLETED" ]; then
             echo "ERROR: Staging deployment did not complete."
             echo "Status: $DEPLOYMENT_STATUS"
             exit 1
           fi
-
+          
           echo "Staging successfully deployed: $NEW_TASK"
 
       - name: Verify staging readiness
         run: |
           set -euo pipefail
-
+          
           curl --fail --silent --show-error \
             --retry 12 \
             --retry-delay 5 \
@@ -273,18 +300,18 @@ jobs:
           IMAGE_URI: ${{ needs.publish-ecr.outputs.image_uri }}
         run: |
           set -euo pipefail
-
+          
           CURRENT_TASK=$(aws ecs describe-services \
             --cluster "$ECS_CLUSTER" \
             --services "$SERVICE" \
             --query 'services[0].taskDefinition' \
             --output text)
-
+          
           aws ecs describe-task-definition \
             --task-definition "$CURRENT_TASK" \
             --query 'taskDefinition' \
             --output json > current-task.json
-
+          
           jq --arg IMAGE "$IMAGE_URI" '
             {
               family,
@@ -312,56 +339,56 @@ jobs:
                 end
               )
           ' current-task.json > new-task.json
-
+          
           NEW_TASK=$(aws ecs register-task-definition \
             --cli-input-json file://new-task.json \
             --query 'taskDefinition.taskDefinitionArn' \
             --output text)
-
+          
           echo "Registered task definition: $NEW_TASK"
-
+          
           aws ecs update-service \
             --cluster "$ECS_CLUSTER" \
             --service "$SERVICE" \
             --task-definition "$NEW_TASK" \
             --query 'service.serviceName' \
             --output text
-
+          
           aws ecs wait services-stable \
             --cluster "$ECS_CLUSTER" \
             --services "$SERVICE"
-
+          
           ACTIVE_TASK=$(aws ecs describe-services \
             --cluster "$ECS_CLUSTER" \
             --services "$SERVICE" \
             --query 'services[0].taskDefinition' \
             --output text)
-
+          
           if [ "$ACTIVE_TASK" != "$NEW_TASK" ]; then
             echo "ERROR: ECS did not retain the new task definition."
             echo "Expected: $NEW_TASK"
             echo "Actual: $ACTIVE_TASK"
             exit 1
           fi
-
+          
           DEPLOYMENT_STATUS=$(aws ecs describe-services \
             --cluster "$ECS_CLUSTER" \
             --services "$SERVICE" \
             --query 'services[0].deployments[?status==`PRIMARY`].rolloutState | [0]' \
             --output text)
-
+          
           if [ "$DEPLOYMENT_STATUS" != "COMPLETED" ]; then
             echo "ERROR: Production deployment did not complete."
             echo "Status: $DEPLOYMENT_STATUS"
             exit 1
           fi
-
+          
           echo "Production successfully deployed: $NEW_TASK"
 
       - name: Verify production readiness
         run: |
           set -euo pipefail
-
+          
           curl --fail --silent --show-error \
             --retry 12 \
             --retry-delay 5 \
