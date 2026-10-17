@@ -36,8 +36,9 @@ data "aws_iam_policy_document" "github_deployment_trust" {
     condition {
       test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:sub"
+
       values = [
-        "repo:${local.github_repository}:environment:${each.value.environment}"
+        "repo:fahmieshaq@22756125/my-hotel@1411763878:environment:${each.value.environment}"
       ]
     }
   }
