@@ -123,7 +123,7 @@ class HotelControllerTest {
     @Test
     void hotels_getHotelById_doNotPassAnyHotelId_fail() throws Exception {
         mockMvc.perform(get("/hotels/"))
-                .andExpect(status().isInternalServerError());
+                .andExpect(status().isNotFound());
     }
 
     @Test
@@ -170,7 +170,7 @@ class HotelControllerTest {
         mockMvc.perform(put("/hotels/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
-                .andExpect(status().isInternalServerError());
+                .andExpect(status().isNotFound());
         verifyNoInteractions(hotelService);
     }
 }
