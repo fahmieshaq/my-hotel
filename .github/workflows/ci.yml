@@ -146,6 +146,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy image to staging
+        timeout-minutes: 20
         env:
           SERVICE: hotel-api-staging
           IMAGE_URI: ${{ needs.publish-ecr.outputs.image_uri }}
@@ -205,36 +206,66 @@ jobs:
             --query 'service.serviceName' \
             --output text
           
-          aws ecs wait services-stable \
-            --cluster "$ECS_CLUSTER" \
-            --services "$SERVICE"
-          
-          ACTIVE_TASK=$(aws ecs describe-services \
-            --cluster "$ECS_CLUSTER" \
-            --services "$SERVICE" \
-            --query 'services[0].taskDefinition' \
-            --output text)
-          
-          if [ "$ACTIVE_TASK" != "$NEW_TASK" ]; then
-            echo "ERROR: ECS did not retain the new task definition."
-            echo "Expected: $NEW_TASK"
-            echo "Actual: $ACTIVE_TASK"
-            exit 1
-          fi
-          
-          DEPLOYMENT_STATUS=$(aws ecs describe-services \
-            --cluster "$ECS_CLUSTER" \
-            --services "$SERVICE" \
-            --query 'services[0].deployments[?status==`PRIMARY`].rolloutState | [0]' \
-            --output text)
-          
-          if [ "$DEPLOYMENT_STATUS" != "COMPLETED" ]; then
-            echo "ERROR: Staging deployment did not complete."
-            echo "Status: $DEPLOYMENT_STATUS"
-            exit 1
-          fi
-          
-          echo "Staging successfully deployed: $NEW_TASK"
+          # Poll the exact deployment created by this workflow.
+          # ECS service stability can precede rolloutState=COMPLETED.
+          MAX_ATTEMPTS=90
+          SLEEP_SECONDS=10
+
+          for ((attempt=1; attempt<=MAX_ATTEMPTS; attempt++)); do
+            SERVICE_JSON=$(aws ecs describe-services \
+              --cluster "$ECS_CLUSTER" \
+              --services "$SERVICE" \
+              --output json)
+
+            FAILURE=$(jq -r '.failures[0].reason // empty' <<< "$SERVICE_JSON")
+            if [ -n "$FAILURE" ]; then
+              echo "ERROR: Could not describe ECS service: $FAILURE"
+              exit 1
+            fi
+
+            STATE=$(jq -r --arg TASK "$NEW_TASK" '
+              .services[0].deployments[]?
+              | select(.taskDefinition == $TASK)
+              | .rolloutState // "UNKNOWN"
+            ' <<< "$SERVICE_JSON" | head -n 1)
+
+            PRIMARY_TASK=$(jq -r '
+              .services[0].deployments[]?
+              | select(.status == "PRIMARY")
+              | .taskDefinition
+            ' <<< "$SERVICE_JSON" | head -n 1)
+
+            RUNNING=$(jq -r '.services[0].runningCount' <<< "$SERVICE_JSON")
+            DESIRED=$(jq -r '.services[0].desiredCount' <<< "$SERVICE_JSON")
+            DEPLOYMENT_COUNT=$(jq -r '.services[0].deployments | length' <<< "$SERVICE_JSON")
+
+            echo "Attempt $attempt/$MAX_ATTEMPTS: rollout=${STATE:-NOT_FOUND}, running=$RUNNING/$DESIRED, deployments=$DEPLOYMENT_COUNT"
+
+            if [ "$STATE" = "FAILED" ]; then
+              echo "ERROR: ECS deployment failed."
+              exit 1
+            fi
+
+            if [ "$STATE" = "COMPLETED" ] && \
+               [ "$PRIMARY_TASK" = "$NEW_TASK" ] && \
+               [ "$RUNNING" = "$DESIRED" ] && \
+               [ "$DEPLOYMENT_COUNT" -eq 1 ]; then
+              echo "Deployment completed successfully: $NEW_TASK"
+              break
+            fi
+
+            if [ -z "$STATE" ] && [ "$PRIMARY_TASK" != "$NEW_TASK" ]; then
+              echo "ERROR: New deployment disappeared; ECS may have rolled back."
+              exit 1
+            fi
+
+            if [ "$attempt" -eq "$MAX_ATTEMPTS" ]; then
+              echo "ERROR: ECS deployment did not complete within 15 minutes."
+              exit 1
+            fi
+
+            sleep "$SLEEP_SECONDS"
+          done
 
       - name: Verify staging readiness
         run: |
@@ -268,6 +299,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy approved image to production
+        timeout-minutes: 20
         env:
           SERVICE: hotel-api-prod
           IMAGE_URI: ${{ needs.publish-ecr.outputs.image_uri }}
@@ -327,36 +359,66 @@ jobs:
             --query 'service.serviceName' \
             --output text
           
-          aws ecs wait services-stable \
-            --cluster "$ECS_CLUSTER" \
-            --services "$SERVICE"
-          
-          ACTIVE_TASK=$(aws ecs describe-services \
-            --cluster "$ECS_CLUSTER" \
-            --services "$SERVICE" \
-            --query 'services[0].taskDefinition' \
-            --output text)
-          
-          if [ "$ACTIVE_TASK" != "$NEW_TASK" ]; then
-            echo "ERROR: ECS did not retain the new task definition."
-            echo "Expected: $NEW_TASK"
-            echo "Actual: $ACTIVE_TASK"
-            exit 1
-          fi
-          
-          DEPLOYMENT_STATUS=$(aws ecs describe-services \
-            --cluster "$ECS_CLUSTER" \
-            --services "$SERVICE" \
-            --query 'services[0].deployments[?status==`PRIMARY`].rolloutState | [0]' \
-            --output text)
-          
-          if [ "$DEPLOYMENT_STATUS" != "COMPLETED" ]; then
-            echo "ERROR: Production deployment did not complete."
-            echo "Status: $DEPLOYMENT_STATUS"
-            exit 1
-          fi
-          
-          echo "Production successfully deployed: $NEW_TASK"
+          # Poll the exact deployment created by this workflow.
+          # ECS service stability can precede rolloutState=COMPLETED.
+          MAX_ATTEMPTS=90
+          SLEEP_SECONDS=10
+
+          for ((attempt=1; attempt<=MAX_ATTEMPTS; attempt++)); do
+            SERVICE_JSON=$(aws ecs describe-services \
+              --cluster "$ECS_CLUSTER" \
+              --services "$SERVICE" \
+              --output json)
+
+            FAILURE=$(jq -r '.failures[0].reason // empty' <<< "$SERVICE_JSON")
+            if [ -n "$FAILURE" ]; then
+              echo "ERROR: Could not describe ECS service: $FAILURE"
+              exit 1
+            fi
+
+            STATE=$(jq -r --arg TASK "$NEW_TASK" '
+              .services[0].deployments[]?
+              | select(.taskDefinition == $TASK)
+              | .rolloutState // "UNKNOWN"
+            ' <<< "$SERVICE_JSON" | head -n 1)
+
+            PRIMARY_TASK=$(jq -r '
+              .services[0].deployments[]?
+              | select(.status == "PRIMARY")
+              | .taskDefinition
+            ' <<< "$SERVICE_JSON" | head -n 1)
+
+            RUNNING=$(jq -r '.services[0].runningCount' <<< "$SERVICE_JSON")
+            DESIRED=$(jq -r '.services[0].desiredCount' <<< "$SERVICE_JSON")
+            DEPLOYMENT_COUNT=$(jq -r '.services[0].deployments | length' <<< "$SERVICE_JSON")
+
+            echo "Attempt $attempt/$MAX_ATTEMPTS: rollout=${STATE:-NOT_FOUND}, running=$RUNNING/$DESIRED, deployments=$DEPLOYMENT_COUNT"
+
+            if [ "$STATE" = "FAILED" ]; then
+              echo "ERROR: ECS deployment failed."
+              exit 1
+            fi
+
+            if [ "$STATE" = "COMPLETED" ] && \
+               [ "$PRIMARY_TASK" = "$NEW_TASK" ] && \
+               [ "$RUNNING" = "$DESIRED" ] && \
+               [ "$DEPLOYMENT_COUNT" -eq 1 ]; then
+              echo "Deployment completed successfully: $NEW_TASK"
+              break
+            fi
+
+            if [ -z "$STATE" ] && [ "$PRIMARY_TASK" != "$NEW_TASK" ]; then
+              echo "ERROR: New deployment disappeared; ECS may have rolled back."
+              exit 1
+            fi
+
+            if [ "$attempt" -eq "$MAX_ATTEMPTS" ]; then
+              echo "ERROR: ECS deployment did not complete within 15 minutes."
+              exit 1
+            fi
+
+            sleep "$SLEEP_SECONDS"
+          done
 
       - name: Verify production readiness
         run: |
