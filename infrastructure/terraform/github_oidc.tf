@@ -76,6 +76,19 @@ data "aws_iam_policy_document" "github_ecr_publish" {
   }
 
   statement {
+    sid    = "DescribePublishedImages"
+    effect = "Allow"
+
+    actions = [
+      "ecr:DescribeImages"
+    ]
+
+    resources = [
+      aws_ecr_repository.app.arn
+    ]
+  }
+
+  statement {
     sid = "PublishHotelAPIImages"
 
     effect = "Allow"
