@@ -10,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,6 +49,21 @@ public class GlobalExceptionHandler {
                     HttpStatus.NOT_FOUND.getReasonPhrase(),
                     ex.getMessage());
         }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+    }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNoResourceFoundException(
+            NoResourceFoundException ex) {
+
+        log.warn("HTTP resource not found: {}", ex.getResourcePath());
+
+        ErrorResponse body = ErrorResponse.of(
+                HttpStatus.NOT_FOUND.value(),
+                HttpStatus.NOT_FOUND.getReasonPhrase(),
+                "Resource not found"
+        );
+
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
     }
 
@@ -101,13 +117,13 @@ public class GlobalExceptionHandler {
         ErrorResponse body = null;
         if (isDevOrStaging) {
             body = ErrorResponse.of(
-                    HttpStatus.BAD_REQUEST.value(),
-                    HttpStatus.BAD_REQUEST.getReasonPhrase(),
+                    HttpStatus.CONFLICT.value(),
+                    HttpStatus.CONFLICT.getReasonPhrase(),
                     "DataIntegrityViolationException | Data integrity violation: " + ex.getMostSpecificCause().getMessage());
         } else {
             body = ErrorResponse.of(
-                    HttpStatus.BAD_REQUEST.value(),
-                    HttpStatus.BAD_REQUEST.getReasonPhrase(),
+                    HttpStatus.CONFLICT.value(),
+                    HttpStatus.CONFLICT.getReasonPhrase(),
                     "Data integrity violation: " + ex.getMostSpecificCause().getMessage());
         }
 
