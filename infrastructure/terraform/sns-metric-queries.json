@@ -1,0 +1,53 @@
+[
+    {
+        "Id":  "published",
+        "MetricStat":  {
+                           "Metric":  {
+                                          "Dimensions":  [
+                                                             {
+                                                                 "Value":  "hotel-api-alerts",
+                                                                 "Name":  "TopicName"
+                                                             }
+                                                         ],
+                                          "MetricName":  "NumberOfMessagesPublished",
+                                          "Namespace":  "AWS/SNS"
+                                      },
+                           "Period":  300,
+                           "Stat":  "Sum"
+                       }
+    },
+    {
+        "Id":  "delivered",
+        "MetricStat":  {
+                           "Metric":  {
+                                          "Dimensions":  [
+                                                             {
+                                                                 "Value":  "hotel-api-alerts",
+                                                                 "Name":  "TopicName"
+                                                             }
+                                                         ],
+                                          "MetricName":  "NumberOfNotificationsDelivered",
+                                          "Namespace":  "AWS/SNS"
+                                      },
+                           "Period":  300,
+                           "Stat":  "Sum"
+                       }
+    },
+    {
+        "Id":  "failed",
+        "MetricStat":  {
+                           "Metric":  {
+                                          "Dimensions":  [
+                                                             {
+                                                                 "Value":  "hotel-api-alerts",
+                                                                 "Name":  "TopicName"
+                                                             }
+                                                         ],
+                                          "MetricName":  "NumberOfNotificationsFailed",
+                                          "Namespace":  "AWS/SNS"
+                                      },
+                           "Period":  300,
+                           "Stat":  "Sum"
+                       }
+    }
+]

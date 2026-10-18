@@ -101,6 +101,64 @@ resource "aws_cloudwatch_metric_alarm" "production_no_healthy_targets" {
 }
 
 # --------------------------------------------------
+# Production HTTP 5xx errors from Spring Boot
+# --------------------------------------------------
+resource "aws_cloudwatch_metric_alarm" "production_http_5xx" {
+  alarm_name        = "hotel-api-production-http-5xx"
+  alarm_description = "Production Hotel API returned HTTP 5xx errors"
+
+  namespace   = "AWS/ApplicationELB"
+  metric_name = "HTTPCode_Target_5XX_Count"
+
+  statistic           = "Sum"
+  period              = 60
+  evaluation_periods  = 2
+  datapoints_to_alarm = 2
+
+  comparison_operator = "GreaterThanThreshold"
+  threshold           = 0
+
+  dimensions = {
+    LoadBalancer = aws_lb.main.arn_suffix
+    TargetGroup  = aws_lb_target_group.hotel_api_environment["prod"].arn_suffix
+  }
+
+  treat_missing_data = "notBreaching"
+
+  alarm_actions = [aws_sns_topic.hotel_api_alerts.arn]
+  ok_actions    = [aws_sns_topic.hotel_api_alerts.arn]
+}
+
+# --------------------------------------------------
+# Production API p95 response latency
+# --------------------------------------------------
+resource "aws_cloudwatch_metric_alarm" "production_high_latency" {
+  alarm_name        = "hotel-api-production-high-latency"
+  alarm_description = "Production Hotel API p95 response latency exceeds 2 seconds"
+
+  namespace   = "AWS/ApplicationELB"
+  metric_name = "TargetResponseTime"
+
+  extended_statistic  = "p95"
+  period              = 60
+  evaluation_periods  = 3
+  datapoints_to_alarm = 3
+
+  comparison_operator = "GreaterThanThreshold"
+  threshold           = 2
+
+  dimensions = {
+    LoadBalancer = aws_lb.main.arn_suffix
+    TargetGroup  = aws_lb_target_group.hotel_api_environment["prod"].arn_suffix
+  }
+
+  treat_missing_data = "notBreaching"
+
+  alarm_actions = [aws_sns_topic.hotel_api_alerts.arn]
+  ok_actions    = [aws_sns_topic.hotel_api_alerts.arn]
+}
+
+# --------------------------------------------------
 # SNS topic policy
 # --------------------------------------------------
 data "aws_iam_policy_document" "sns_combined" {
@@ -156,7 +214,12 @@ data "aws_iam_policy_document" "sns_combined" {
     condition {
       test     = "ArnEquals"
       variable = "aws:SourceArn"
-      values   = [aws_cloudwatch_metric_alarm.production_no_healthy_targets.arn]
+      values = [
+        aws_cloudwatch_metric_alarm.production_no_healthy_targets.arn,
+        aws_cloudwatch_metric_alarm.production_http_5xx.arn,
+        aws_cloudwatch_metric_alarm.production_high_latency.arn,
+        aws_cloudwatch_metric_alarm.production_application_errors.arn
+      ]
     }
   }
 }
@@ -164,4 +227,59 @@ data "aws_iam_policy_document" "sns_combined" {
 resource "aws_sns_topic_policy" "hotel_api_alerts" {
   arn    = aws_sns_topic.hotel_api_alerts.arn
   policy = data.aws_iam_policy_document.sns_combined.json
+}
+
+# --------------------------------------------------
+# Production application error metric filter
+# --------------------------------------------------
+resource "aws_cloudwatch_log_metric_filter" "production_application_errors" {
+  name           = "hotel-api-production-application-errors"
+  log_group_name = "/ecs/hotel-api-prod"
+
+  pattern = "[date, time, timezone, level = ERROR, ...]"
+
+  metric_transformation {
+    name      = "ApplicationErrorCount"
+    namespace = "HotelAPI/Production"
+    value     = "1"
+  }
+}
+
+# Production application error alarm
+resource "aws_cloudwatch_metric_alarm" "production_application_errors" {
+  alarm_name        = "hotel-api-production-application-errors"
+  alarm_description = "Production Hotel API recorded 3 or more application errors in 5 minutes"
+
+  namespace   = "HotelAPI/Production"
+  metric_name = "ApplicationErrorCount"
+
+  statistic           = "Sum"
+  period              = 300
+  evaluation_periods  = 1
+  datapoints_to_alarm = 1
+
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  threshold           = 3
+
+  treat_missing_data = "notBreaching"
+
+  alarm_actions = [aws_sns_topic.hotel_api_alerts.arn]
+  ok_actions    = [aws_sns_topic.hotel_api_alerts.arn]
+
+  depends_on = [
+    aws_cloudwatch_log_metric_filter.production_application_errors
+  ]
+}
+
+resource "aws_cloudwatch_log_metric_filter" "production_business_rule_violations" {
+  name           = "hotel-api-production-business-rule-violations"
+  log_group_name = "/ecs/hotel-api-prod"
+
+  pattern = "\"BUSINESS_RULE_VIOLATION\""
+
+  metric_transformation {
+    name      = "BusinessRuleViolationCount"
+    namespace = "HotelAPI/Production"
+    value     = "1"
+  }
 }

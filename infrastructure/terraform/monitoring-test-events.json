@@ -1,0 +1,14 @@
+[
+    {
+        "timestamp":  1792286416590,
+        "message":  "2026-10-18 01:00:00.000 Z ERROR [monitoring-test] Synthetic application error test 1"
+    },
+    {
+        "timestamp":  1792286416591,
+        "message":  "2026-10-18 01:00:00.001 Z ERROR [monitoring-test] Synthetic application error test 2"
+    },
+    {
+        "timestamp":  1792286416592,
+        "message":  "2026-10-18 01:00:00.002 Z ERROR [monitoring-test] Synthetic application error test 3"
+    }
+]
