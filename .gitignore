@@ -63,3 +63,5 @@ override.tf.json
 *_override.tf.json
 
 hotel-backup-*.tar
+
+infrastructure/terraform/terraform.tfvars
