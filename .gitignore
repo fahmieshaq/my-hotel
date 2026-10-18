@@ -37,7 +37,6 @@ build/
 .env.*
 !.env.example
 
-### Exclude Terraform state files ###
 ### Terraform working directory ###
 **/.terraform/
 
@@ -62,6 +61,5 @@ override.tf.json
 *_override.tf
 *_override.tf.json
 
+### Local Docker image archives ###
 hotel-backup-*.tar
-
-infrastructure/terraform/terraform.tfvars
