@@ -124,7 +124,7 @@ public class GlobalExceptionHandler {
             body = ErrorResponse.of(
                     HttpStatus.CONFLICT.value(),
                     HttpStatus.CONFLICT.getReasonPhrase(),
-                    "Data integrity violation: " + ex.getMostSpecificCause().getMessage());
+                    "Data integrity violation"); // + ex.getMostSpecificCause().getMessage());
         }
 
         return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
@@ -141,7 +141,8 @@ public class GlobalExceptionHandler {
             }
         }
 
-        log.warn("Business rule violated: {}", ex.getMessage());
+        //log.warn("Business rule violated: {}", ex.getMessage());
+        log.warn("BUSINESS_RULE_VIOLATION: {}", ex.getMessage());
 
         ErrorResponse body = null;
         if (isDevOrStaging) {

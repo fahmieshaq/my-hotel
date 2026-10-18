@@ -616,3 +616,621 @@ org.springframework.http.converter.HttpMessageNotReadableException: Required req
 2026-10-18T02:02:31.114+03:00  INFO 24828 --- [my-hotel] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-10-18T02:02:31.115+03:00  INFO 24828 --- [my-hotel] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
 2026-10-18T02:02:31.225+03:00  INFO 24828 --- [my-hotel] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2026-10-18T04:48:12.797+03:00  INFO 28392 --- [my-hotel] [main] c.m.m.controller.HotelControllerTest     : Starting HotelControllerTest using Java 17.0.19 with PID 28392 (started by fjamc in C:\Users\fjamc\OneDrive\Desktop\my-hotel)
+2026-10-18T04:48:12.798+03:00 DEBUG 28392 --- [my-hotel] [main] c.m.m.controller.HotelControllerTest     : Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-10-18T04:48:12.799+03:00  INFO 28392 --- [my-hotel] [main] c.m.m.controller.HotelControllerTest     : No active profile set, falling back to 1 default profile: "dev"
+2026-10-18T04:48:15.616+03:00 DEBUG 28392 --- [my-hotel] [main] c.maz.my_hotel.filter.RequestIdFilter    : Filter 'requestIdFilter' configured for use
+2026-10-18T04:48:15.628+03:00  INFO 28392 --- [my-hotel] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-18T04:48:15.629+03:00  INFO 28392 --- [my-hotel] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-18T04:48:15.634+03:00  INFO 28392 --- [my-hotel] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2026-10-18T04:48:15.701+03:00  INFO 28392 --- [my-hotel] [main] c.m.m.controller.HotelControllerTest     : Started HotelControllerTest in 3.318 seconds (process running for 4.6)
+2026-10-18T04:48:15.933+03:00  WARN 28392 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : HTTP resource not found: hotels
+2026-10-18T04:48:16.150+03:00  WARN 28392 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : HTTP resource not found: hotels
+2026-10-18T04:48:16.358+03:00  WARN 28392 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : Validation failed: {location=Hotel location is required}
+2026-10-18T04:48:16.498+03:00  WARN 28392 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : Resource not found: Hotel not found with id: 999
+2026-10-18T04:48:16.512+03:00 ERROR 28392 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : Unexpected application failure: Required request body is missing: public org.springframework.http.ResponseEntity<com.maz.my_hotel.dto.HotelResponseDTO> com.maz.my_hotel.controller.HotelController.createHotel(com.maz.my_hotel.dto.HotelRequestDTO)
+
+org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<com.maz.my_hotel.dto.HotelResponseDTO> com.maz.my_hotel.controller.HotelController.createHotel(com.maz.my_hotel.dto.HotelRequestDTO)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:184) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:156) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:224) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:174) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649) ~[tomcat-embed-core-11.0.24.jar:6.1]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72) ~[spring-test-7.0.9.jar:7.0.9]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.24.jar:6.1]
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:160) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127) ~[spring-test-7.0.9.jar:7.0.9]
+	at com.maz.my_hotel.filter.RequestIdFilter.doFilterInternal(RequestIdFilter.java:85) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:160) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:160) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:160) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:160) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:199) ~[spring-test-7.0.9.jar:7.0.9]
+	at com.maz.my_hotel.controller.HotelControllerTest.hotels_createHotel_missingBody_fail(HotelControllerTest.java:70) ~[test-classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:701) ~[junit-platform-commons-6.0.3.jar:6.0.3]
+	at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:502) ~[junit-platform-commons-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:45) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:123) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:246) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:218) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:179) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:157) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:125) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:57) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:56) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
+	at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125) ~[surefire-api-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:203) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:168) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:136) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) ~[surefire-booter-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.5.6.jar:3.5.6]
+
+2026-10-18T04:48:16.535+03:00  WARN 28392 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : Method argument type mismatch: Method parameter 'id': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "de"
+2026-10-18T04:48:16.560+03:00  WARN 28392 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : Resource not found: Hotel not found with id: 999
+2026-10-18T04:48:16.572+03:00  WARN 28392 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : Method argument type mismatch: Method parameter 'id': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "abc"
+2026-10-18T04:48:16.625+03:00  INFO 28392 --- [my-hotel] [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.maz.my_hotel.integration.HotelIntegrationTest]: HotelIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-18T04:48:16.675+03:00  INFO 28392 --- [my-hotel] [main] org.testcontainers.images.PullPolicy     : Image pull policy will be performed by: DefaultPullPolicy()
+2026-10-18T04:48:16.678+03:00  INFO 28392 --- [my-hotel] [main] o.t.utility.ImageNameSubstitutor         : Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2026-10-18T04:48:16.697+03:00  INFO 28392 --- [my-hotel] [main] org.testcontainers.DockerClientFactory   : Testcontainers version: 2.0.5
+2026-10-18T04:48:17.007+03:00  INFO 28392 --- [my-hotel] [main] o.t.d.DockerClientProviderStrategy       : Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2026-10-18T04:48:17.504+03:00  INFO 28392 --- [my-hotel] [main] o.t.d.DockerClientProviderStrategy       : Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
+2026-10-18T04:48:17.506+03:00  INFO 28392 --- [my-hotel] [main] org.testcontainers.DockerClientFactory   : Docker host IP address is localhost
+2026-10-18T04:48:17.526+03:00  INFO 28392 --- [my-hotel] [main] org.testcontainers.DockerClientFactory   : Connected to docker: 
+  Server Version: 27.2.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 7794 MB
+  Labels: 
+    com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+2026-10-18T04:48:17.633+03:00  INFO 28392 --- [my-hotel] [main] tc.testcontainers/ryuk:0.14.0            : Creating container for image: testcontainers/ryuk:0.14.0
+2026-10-18T04:48:17.840+03:00  INFO 28392 --- [my-hotel] [main] o.t.utility.RegistryAuthLocator          : Credential helper/store (docker-credential-desktop) does not have credentials for https://index.docker.io/v1/
+2026-10-18T04:48:18.124+03:00  INFO 28392 --- [my-hotel] [main] tc.testcontainers/ryuk:0.14.0            : Container testcontainers/ryuk:0.14.0 is starting: 27ba35b57a875c2ab2117249b6e6dc75cf53ea36bb5c2fec8a1f1935a67d72e3
+2026-10-18T04:48:18.954+03:00  INFO 28392 --- [my-hotel] [main] tc.testcontainers/ryuk:0.14.0            : Container testcontainers/ryuk:0.14.0 started in PT1.3207636S
+2026-10-18T04:48:18.965+03:00  INFO 28392 --- [my-hotel] [main] o.t.utility.RyukResourceReaper           : Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2026-10-18T04:48:18.965+03:00  INFO 28392 --- [my-hotel] [main] org.testcontainers.DockerClientFactory   : Checking the system...
+2026-10-18T04:48:18.966+03:00  INFO 28392 --- [my-hotel] [main] org.testcontainers.DockerClientFactory   : ✔︎ Docker server version should be at least 1.6.0
+2026-10-18T04:48:18.981+03:00  INFO 28392 --- [my-hotel] [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.maz.my_hotel.MyHotelApplication for test class com.maz.my_hotel.integration.HotelIntegrationTest
+2026-10-18T04:48:18.984+03:00  INFO 28392 --- [my-hotel] [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.maz.my_hotel.integration.HotelIntegrationTest]: HotelIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-18T04:48:18.988+03:00  INFO 28392 --- [my-hotel] [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.maz.my_hotel.MyHotelApplication for test class com.maz.my_hotel.integration.HotelIntegrationTest
+2026-10-18T04:48:18.994+03:00  INFO 28392 --- [my-hotel] [main] tc.postgres:18                           : Creating container for image: postgres:18
+2026-10-18T04:48:19.154+03:00  INFO 28392 --- [my-hotel] [main] tc.postgres:18                           : Container postgres:18 is starting: 8dfd919fca406bb5d7219e4ddf66b78b62a8e271079b3430559bde4a7ee89941
+2026-10-18T04:48:21.348+03:00  INFO 28392 --- [my-hotel] [main] tc.postgres:18                           : Container postgres:18 started in PT2.3545609S
+2026-10-18T04:48:21.350+03:00  INFO 28392 --- [my-hotel] [main] tc.postgres:18                           : Container is started (JDBC URL: jdbc:postgresql://localhost:59986/test?loggerLevel=OFF)
+2026-10-18T04:48:21.384+03:00  INFO 28392 --- [my-hotel] [main] c.m.m.integration.HotelIntegrationTest   : Starting HotelIntegrationTest using Java 17.0.19 with PID 28392 (started by fjamc in C:\Users\fjamc\OneDrive\Desktop\my-hotel)
+2026-10-18T04:48:21.385+03:00 DEBUG 28392 --- [my-hotel] [main] c.m.m.integration.HotelIntegrationTest   : Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-10-18T04:48:21.385+03:00  INFO 28392 --- [my-hotel] [main] c.m.m.integration.HotelIntegrationTest   : No active profile set, falling back to 1 default profile: "dev"
+2026-10-18T04:48:21.986+03:00  INFO 28392 --- [my-hotel] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-18T04:48:22.033+03:00  INFO 28392 --- [my-hotel] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 3 JPA repository interfaces.
+2026-10-18T04:48:22.740+03:00  INFO 28392 --- [my-hotel] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59986/test?loggerLevel=OFF (PostgreSQL 18.6)
+2026-10-18T04:48:22.812+03:00  INFO 28392 --- [my-hotel] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-10-18T04:48:22.816+03:00  INFO 28392 --- [my-hotel] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.019s)
+2026-10-18T04:48:22.836+03:00  INFO 28392 --- [my-hotel] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-10-18T04:48:22.898+03:00  INFO 28392 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-10-18T04:48:22.910+03:00  INFO 28392 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1 - create tables"
+2026-10-18T04:48:22.958+03:00  INFO 28392 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2"
+2026-10-18T04:48:22.981+03:00  INFO 28392 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "public", now at version v2 (execution time 00:00.033s)
+2026-10-18T04:48:23.090+03:00  INFO 28392 --- [my-hotel] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-18T04:48:23.188+03:00  INFO 28392 --- [my-hotel] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-10-18T04:48:23.528+03:00  INFO 28392 --- [my-hotel] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-18T04:48:23.564+03:00  INFO 28392 --- [my-hotel] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-18T04:48:23.592+03:00  INFO 28392 --- [my-hotel] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@12f52ca4
+2026-10-18T04:48:23.593+03:00  INFO 28392 --- [my-hotel] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-18T04:48:23.624+03:00  WARN 28392 --- [my-hotel] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-10-18T04:48:23.652+03:00  INFO 28392 --- [my-hotel] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:59986/test?loggerLevel=OFF]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: test/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-18T04:48:24.450+03:00  INFO 28392 --- [my-hotel] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-18T04:48:24.509+03:00  INFO 28392 --- [my-hotel] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-18T04:48:24.579+03:00  INFO 28392 --- [my-hotel] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-10-18T04:48:24.997+03:00  WARN 28392 --- [my-hotel] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-18T04:48:25.604+03:00 DEBUG 28392 --- [my-hotel] [main] c.maz.my_hotel.filter.RequestIdFilter    : Filter 'requestIdFilter' configured for use
+2026-10-18T04:48:25.605+03:00  INFO 28392 --- [my-hotel] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-18T04:48:25.605+03:00  INFO 28392 --- [my-hotel] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-18T04:48:25.608+03:00  INFO 28392 --- [my-hotel] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-10-18T04:48:25.616+03:00  INFO 28392 --- [my-hotel] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 10 ms
+2026-10-18T04:48:25.673+03:00  INFO 28392 --- [my-hotel] [main] c.m.m.integration.HotelIntegrationTest   : Started HotelIntegrationTest in 4.317 seconds (process running for 14.572)
+2026-10-18T04:48:25.726+03:00  WARN 28392 --- [my-hotel] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-18T04:48:25.726+03:00  WARN 28392 --- [my-hotel] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-18T04:48:25.759+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Creating hotel with name=Grand Plaza location Moroco
+2026-10-18T04:48:25.795+03:00 DEBUG 28392 --- [my-hotel] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        hotel
+        (location, name) 
+    values
+        (?, ?)
+2026-10-18T04:48:25.823+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Hotel created successfully. hotelId=1
+2026-10-18T04:48:26.175+03:00 DEBUG 28392 --- [my-hotel] [main] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        hotel h1_0
+2026-10-18T04:48:26.749+03:00  INFO 28392 --- [my-hotel] [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.maz.my_hotel.repository.HotelRepositoryTest]: HotelRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-18T04:48:26.769+03:00  INFO 28392 --- [my-hotel] [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.maz.my_hotel.MyHotelApplication for test class com.maz.my_hotel.repository.HotelRepositoryTest
+2026-10-18T04:48:26.770+03:00  INFO 28392 --- [my-hotel] [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.maz.my_hotel.repository.HotelRepositoryTest]: HotelRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-18T04:48:26.780+03:00  INFO 28392 --- [my-hotel] [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.maz.my_hotel.MyHotelApplication for test class com.maz.my_hotel.repository.HotelRepositoryTest
+2026-10-18T04:48:26.782+03:00  INFO 28392 --- [my-hotel] [main] tc.postgres:18                           : Creating container for image: postgres:18
+2026-10-18T04:48:26.917+03:00  INFO 28392 --- [my-hotel] [main] tc.postgres:18                           : Container postgres:18 is starting: 41d7e77431a307a5f3d38616a76a48d2870728171ad4929af26e261d0deb2864
+2026-10-18T04:48:28.680+03:00  INFO 28392 --- [my-hotel] [main] tc.postgres:18                           : Container postgres:18 started in PT1.8977101S
+2026-10-18T04:48:28.680+03:00  INFO 28392 --- [my-hotel] [main] tc.postgres:18                           : Container is started (JDBC URL: jdbc:postgresql://localhost:60006/test?loggerLevel=OFF)
+2026-10-18T04:48:28.700+03:00  INFO 28392 --- [my-hotel] [main] c.m.m.repository.HotelRepositoryTest     : Starting HotelRepositoryTest using Java 17.0.19 with PID 28392 (started by fjamc in C:\Users\fjamc\OneDrive\Desktop\my-hotel)
+2026-10-18T04:48:28.701+03:00 DEBUG 28392 --- [my-hotel] [main] c.m.m.repository.HotelRepositoryTest     : Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-10-18T04:48:28.701+03:00  INFO 28392 --- [my-hotel] [main] c.m.m.repository.HotelRepositoryTest     : No active profile set, falling back to 1 default profile: "dev"
+2026-10-18T04:48:28.773+03:00  INFO 28392 --- [my-hotel] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-18T04:48:28.784+03:00  INFO 28392 --- [my-hotel] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 3 JPA repository interfaces.
+2026-10-18T04:48:28.928+03:00  INFO 28392 --- [my-hotel] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:60006/test?loggerLevel=OFF (PostgreSQL 18.6)
+2026-10-18T04:48:28.951+03:00  INFO 28392 --- [my-hotel] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-10-18T04:48:28.953+03:00  INFO 28392 --- [my-hotel] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.006s)
+2026-10-18T04:48:28.967+03:00  INFO 28392 --- [my-hotel] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-10-18T04:48:29.000+03:00  INFO 28392 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-10-18T04:48:29.006+03:00  INFO 28392 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1 - create tables"
+2026-10-18T04:48:29.044+03:00  INFO 28392 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2"
+2026-10-18T04:48:29.062+03:00  INFO 28392 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "public", now at version v2 (execution time 00:00.029s)
+2026-10-18T04:48:29.077+03:00  INFO 28392 --- [my-hotel] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-18T04:48:29.098+03:00  INFO 28392 --- [my-hotel] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-18T04:48:29.098+03:00  INFO 28392 --- [my-hotel] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-10-18T04:48:29.112+03:00  INFO 28392 --- [my-hotel] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@48c17fd8
+2026-10-18T04:48:29.112+03:00  INFO 28392 --- [my-hotel] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-10-18T04:48:29.117+03:00  WARN 28392 --- [my-hotel] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-10-18T04:48:29.123+03:00  INFO 28392 --- [my-hotel] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:60006/test?loggerLevel=OFF]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: test/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-18T04:48:29.156+03:00  INFO 28392 --- [my-hotel] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-18T04:48:29.169+03:00  INFO 28392 --- [my-hotel] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-18T04:48:29.196+03:00  INFO 28392 --- [my-hotel] [main] c.m.m.repository.HotelRepositoryTest     : Started HotelRepositoryTest in 0.514 seconds (process running for 18.096)
+2026-10-18T04:48:29.204+03:00 DEBUG 28392 --- [my-hotel] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        hotel
+        (location, name) 
+    values
+        (?, ?)
+2026-10-18T04:48:29.212+03:00  WARN 28392 --- [my-hotel] [main] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 23502
+2026-10-18T04:48:29.212+03:00  WARN 28392 --- [my-hotel] [main] org.hibernate.orm.jdbc.error             : ERROR: null value in column "name" of relation "hotel" violates not-null constraint
+  Detail: Failing row contains (1, null, Morocco).
+2026-10-18T04:48:29.234+03:00 DEBUG 28392 --- [my-hotel] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        hotel
+        (location, name) 
+    values
+        (?, ?)
+2026-10-18T04:48:29.235+03:00  WARN 28392 --- [my-hotel] [main] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 23502
+2026-10-18T04:48:29.236+03:00  WARN 28392 --- [my-hotel] [main] org.hibernate.orm.jdbc.error             : ERROR: null value in column "location" of relation "hotel" violates not-null constraint
+  Detail: Failing row contains (2, Grand Plaza, null).
+2026-10-18T04:48:29.829+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Updating hotel with id=1
+2026-10-18T04:48:29.830+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Hotel updated successfully. hotelId=1
+2026-10-18T04:48:29.840+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Creating hotel with name=Grand Plaza location Morocco
+2026-10-18T04:48:29.840+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Hotel created successfully. hotelId=1
+2026-10-18T04:48:29.842+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Updating hotel with id=1
+2026-10-18T04:48:29.842+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Hotel updated successfully. hotelId=1
+2026-10-18T04:48:29.845+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Getting all hotels
+2026-10-18T04:48:29.856+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Getting hotel with id=1
+2026-10-18T04:48:29.858+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Updating hotel with id=999
+2026-10-18T04:48:29.861+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Getting hotel with id=999
+2026-10-18T04:48:29.864+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Deleting hotel with id=1
+2026-10-18T04:48:29.864+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Hotel deleted with id=1
+2026-10-18T04:48:29.867+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Getting all hotels
+2026-10-18T04:48:29.871+03:00  INFO 28392 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Deleting hotel with id=999
+2026-10-18T04:48:29.896+03:00  INFO 28392 --- [my-hotel] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-10-18T04:48:29.898+03:00  INFO 28392 --- [my-hotel] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-10-18T04:48:29.903+03:00  INFO 28392 --- [my-hotel] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-10-18T04:48:29.904+03:00  INFO 28392 --- [my-hotel] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-10-18T04:48:29.904+03:00  INFO 28392 --- [my-hotel] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-10-18T04:48:29.969+03:00  INFO 28392 --- [my-hotel] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2026-10-18T04:56:37.736+03:00  INFO 8072 --- [my-hotel] [main] c.m.m.controller.HotelControllerTest     : Starting HotelControllerTest using Java 17.0.19 with PID 8072 (started by fjamc in C:\Users\fjamc\OneDrive\Desktop\my-hotel)
+2026-10-18T04:56:37.737+03:00 DEBUG 8072 --- [my-hotel] [main] c.m.m.controller.HotelControllerTest     : Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-10-18T04:56:37.738+03:00  INFO 8072 --- [my-hotel] [main] c.m.m.controller.HotelControllerTest     : No active profile set, falling back to 1 default profile: "dev"
+2026-10-18T04:56:40.342+03:00 DEBUG 8072 --- [my-hotel] [main] c.maz.my_hotel.filter.RequestIdFilter    : Filter 'requestIdFilter' configured for use
+2026-10-18T04:56:40.357+03:00  INFO 8072 --- [my-hotel] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-18T04:56:40.358+03:00  INFO 8072 --- [my-hotel] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-18T04:56:40.363+03:00  INFO 8072 --- [my-hotel] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2026-10-18T04:56:40.432+03:00  INFO 8072 --- [my-hotel] [main] c.m.m.controller.HotelControllerTest     : Started HotelControllerTest in 3.099 seconds (process running for 4.367)
+2026-10-18T04:56:40.605+03:00  WARN 8072 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : HTTP resource not found: hotels
+2026-10-18T04:56:40.760+03:00  WARN 8072 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : HTTP resource not found: hotels
+2026-10-18T04:56:40.896+03:00  WARN 8072 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : Validation failed: {location=Hotel location is required}
+2026-10-18T04:56:41.001+03:00  WARN 8072 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : Resource not found: Hotel not found with id: 999
+2026-10-18T04:56:41.015+03:00 ERROR 8072 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : Unexpected application failure: Required request body is missing: public org.springframework.http.ResponseEntity<com.maz.my_hotel.dto.HotelResponseDTO> com.maz.my_hotel.controller.HotelController.createHotel(com.maz.my_hotel.dto.HotelRequestDTO)
+
+org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<com.maz.my_hotel.dto.HotelResponseDTO> com.maz.my_hotel.controller.HotelController.createHotel(com.maz.my_hotel.dto.HotelRequestDTO)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:184) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:156) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:224) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:174) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649) ~[tomcat-embed-core-11.0.24.jar:6.1]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.9.jar:7.0.9]
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72) ~[spring-test-7.0.9.jar:7.0.9]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.24.jar:6.1]
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:160) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127) ~[spring-test-7.0.9.jar:7.0.9]
+	at com.maz.my_hotel.filter.RequestIdFilter.doFilterInternal(RequestIdFilter.java:85) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:160) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:160) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:160) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.9.jar:7.0.9]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:160) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127) ~[spring-test-7.0.9.jar:7.0.9]
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:199) ~[spring-test-7.0.9.jar:7.0.9]
+	at com.maz.my_hotel.controller.HotelControllerTest.hotels_createHotel_missingBody_fail(HotelControllerTest.java:70) ~[test-classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:701) ~[junit-platform-commons-6.0.3.jar:6.0.3]
+	at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:502) ~[junit-platform-commons-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:45) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:123) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:246) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:218) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:179) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:157) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:125) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:57) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:56) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
+	at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125) ~[surefire-api-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:203) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:168) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:136) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) ~[surefire-booter-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.5.6.jar:3.5.6]
+
+2026-10-18T04:56:41.036+03:00  WARN 8072 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : Method argument type mismatch: Method parameter 'id': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "de"
+2026-10-18T04:56:41.055+03:00  WARN 8072 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : Resource not found: Hotel not found with id: 999
+2026-10-18T04:56:41.067+03:00  WARN 8072 --- [my-hotel] [main] c.m.m.exception.GlobalExceptionHandler   : Method argument type mismatch: Method parameter 'id': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "abc"
+2026-10-18T04:56:41.126+03:00  INFO 8072 --- [my-hotel] [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.maz.my_hotel.integration.HotelIntegrationTest]: HotelIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-18T04:56:41.178+03:00  INFO 8072 --- [my-hotel] [main] org.testcontainers.images.PullPolicy     : Image pull policy will be performed by: DefaultPullPolicy()
+2026-10-18T04:56:41.180+03:00  INFO 8072 --- [my-hotel] [main] o.t.utility.ImageNameSubstitutor         : Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2026-10-18T04:56:41.203+03:00  INFO 8072 --- [my-hotel] [main] org.testcontainers.DockerClientFactory   : Testcontainers version: 2.0.5
+2026-10-18T04:56:41.613+03:00  INFO 8072 --- [my-hotel] [main] o.t.d.DockerClientProviderStrategy       : Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2026-10-18T04:56:42.093+03:00  INFO 8072 --- [my-hotel] [main] o.t.d.DockerClientProviderStrategy       : Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
+2026-10-18T04:56:42.094+03:00  INFO 8072 --- [my-hotel] [main] org.testcontainers.DockerClientFactory   : Docker host IP address is localhost
+2026-10-18T04:56:42.112+03:00  INFO 8072 --- [my-hotel] [main] org.testcontainers.DockerClientFactory   : Connected to docker: 
+  Server Version: 27.2.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 7794 MB
+  Labels: 
+    com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+2026-10-18T04:56:42.216+03:00  INFO 8072 --- [my-hotel] [main] tc.testcontainers/ryuk:0.14.0            : Creating container for image: testcontainers/ryuk:0.14.0
+2026-10-18T04:56:42.385+03:00  INFO 8072 --- [my-hotel] [main] o.t.utility.RegistryAuthLocator          : Credential helper/store (docker-credential-desktop) does not have credentials for https://index.docker.io/v1/
+2026-10-18T04:56:42.572+03:00  INFO 8072 --- [my-hotel] [main] tc.testcontainers/ryuk:0.14.0            : Container testcontainers/ryuk:0.14.0 is starting: 8a8bb6ed7de58841df50aa04b53b621752baba1c30d91ff7ea34dd9fefda6342
+2026-10-18T04:56:43.108+03:00  INFO 8072 --- [my-hotel] [main] tc.testcontainers/ryuk:0.14.0            : Container testcontainers/ryuk:0.14.0 started in PT0.8918569S
+2026-10-18T04:56:43.116+03:00  INFO 8072 --- [my-hotel] [main] o.t.utility.RyukResourceReaper           : Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2026-10-18T04:56:43.116+03:00  INFO 8072 --- [my-hotel] [main] org.testcontainers.DockerClientFactory   : Checking the system...
+2026-10-18T04:56:43.117+03:00  INFO 8072 --- [my-hotel] [main] org.testcontainers.DockerClientFactory   : ✔︎ Docker server version should be at least 1.6.0
+2026-10-18T04:56:43.131+03:00  INFO 8072 --- [my-hotel] [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.maz.my_hotel.MyHotelApplication for test class com.maz.my_hotel.integration.HotelIntegrationTest
+2026-10-18T04:56:43.134+03:00  INFO 8072 --- [my-hotel] [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.maz.my_hotel.integration.HotelIntegrationTest]: HotelIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-18T04:56:43.139+03:00  INFO 8072 --- [my-hotel] [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.maz.my_hotel.MyHotelApplication for test class com.maz.my_hotel.integration.HotelIntegrationTest
+2026-10-18T04:56:43.147+03:00  INFO 8072 --- [my-hotel] [main] tc.postgres:18                           : Creating container for image: postgres:18
+2026-10-18T04:56:43.324+03:00  INFO 8072 --- [my-hotel] [main] tc.postgres:18                           : Container postgres:18 is starting: a9adecac9c7a08f0f12137f678c0c2e74b6b66d971192e349364665a68a6e47a
+2026-10-18T04:56:45.082+03:00  INFO 8072 --- [my-hotel] [main] tc.postgres:18                           : Container postgres:18 started in PT1.9353939S
+2026-10-18T04:56:45.083+03:00  INFO 8072 --- [my-hotel] [main] tc.postgres:18                           : Container is started (JDBC URL: jdbc:postgresql://localhost:52146/test?loggerLevel=OFF)
+2026-10-18T04:56:45.137+03:00  INFO 8072 --- [my-hotel] [main] c.m.m.integration.HotelIntegrationTest   : Starting HotelIntegrationTest using Java 17.0.19 with PID 8072 (started by fjamc in C:\Users\fjamc\OneDrive\Desktop\my-hotel)
+2026-10-18T04:56:45.137+03:00 DEBUG 8072 --- [my-hotel] [main] c.m.m.integration.HotelIntegrationTest   : Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-10-18T04:56:45.137+03:00  INFO 8072 --- [my-hotel] [main] c.m.m.integration.HotelIntegrationTest   : No active profile set, falling back to 1 default profile: "dev"
+2026-10-18T04:56:45.856+03:00  INFO 8072 --- [my-hotel] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-18T04:56:45.922+03:00  INFO 8072 --- [my-hotel] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 3 JPA repository interfaces.
+2026-10-18T04:56:46.701+03:00  INFO 8072 --- [my-hotel] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:52146/test?loggerLevel=OFF (PostgreSQL 18.6)
+2026-10-18T04:56:46.769+03:00  INFO 8072 --- [my-hotel] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-10-18T04:56:46.774+03:00  INFO 8072 --- [my-hotel] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.020s)
+2026-10-18T04:56:46.836+03:00  INFO 8072 --- [my-hotel] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-10-18T04:56:46.913+03:00  INFO 8072 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-10-18T04:56:46.929+03:00  INFO 8072 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1 - create tables"
+2026-10-18T04:56:46.981+03:00  INFO 8072 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2"
+2026-10-18T04:56:47.004+03:00  INFO 8072 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "public", now at version v2 (execution time 00:00.037s)
+2026-10-18T04:56:47.100+03:00  INFO 8072 --- [my-hotel] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-18T04:56:47.174+03:00  INFO 8072 --- [my-hotel] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-10-18T04:56:47.461+03:00  INFO 8072 --- [my-hotel] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-18T04:56:47.493+03:00  INFO 8072 --- [my-hotel] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-18T04:56:47.515+03:00  INFO 8072 --- [my-hotel] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@16b48082
+2026-10-18T04:56:47.516+03:00  INFO 8072 --- [my-hotel] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-18T04:56:47.550+03:00  WARN 8072 --- [my-hotel] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-10-18T04:56:47.579+03:00  INFO 8072 --- [my-hotel] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:52146/test?loggerLevel=OFF]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: test/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-18T04:56:49.752+03:00  INFO 8072 --- [my-hotel] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-18T04:56:49.874+03:00  INFO 8072 --- [my-hotel] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-18T04:56:49.996+03:00  INFO 8072 --- [my-hotel] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-10-18T04:56:50.955+03:00  WARN 8072 --- [my-hotel] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-18T04:56:52.792+03:00 DEBUG 8072 --- [my-hotel] [main] c.maz.my_hotel.filter.RequestIdFilter    : Filter 'requestIdFilter' configured for use
+2026-10-18T04:56:52.793+03:00  INFO 8072 --- [my-hotel] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-18T04:56:52.793+03:00  INFO 8072 --- [my-hotel] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-18T04:56:52.797+03:00  INFO 8072 --- [my-hotel] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-10-18T04:56:52.807+03:00  INFO 8072 --- [my-hotel] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 14 ms
+2026-10-18T04:56:52.966+03:00  INFO 8072 --- [my-hotel] [main] c.m.m.integration.HotelIntegrationTest   : Started HotelIntegrationTest in 7.878 seconds (process running for 16.902)
+2026-10-18T04:56:53.056+03:00  WARN 8072 --- [my-hotel] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-18T04:56:53.056+03:00  WARN 8072 --- [my-hotel] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-18T04:56:53.150+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Creating hotel with name=Grand Plaza location Moroco
+2026-10-18T04:56:53.211+03:00 DEBUG 8072 --- [my-hotel] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        hotel
+        (location, name) 
+    values
+        (?, ?)
+2026-10-18T04:56:53.288+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Hotel created successfully. hotelId=1
+2026-10-18T04:56:54.193+03:00 DEBUG 8072 --- [my-hotel] [main] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        hotel h1_0
+2026-10-18T04:56:54.782+03:00  INFO 8072 --- [my-hotel] [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.maz.my_hotel.repository.HotelRepositoryTest]: HotelRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-18T04:56:54.831+03:00  INFO 8072 --- [my-hotel] [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.maz.my_hotel.MyHotelApplication for test class com.maz.my_hotel.repository.HotelRepositoryTest
+2026-10-18T04:56:54.832+03:00  INFO 8072 --- [my-hotel] [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.maz.my_hotel.repository.HotelRepositoryTest]: HotelRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-18T04:56:54.869+03:00  INFO 8072 --- [my-hotel] [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.maz.my_hotel.MyHotelApplication for test class com.maz.my_hotel.repository.HotelRepositoryTest
+2026-10-18T04:56:54.871+03:00  INFO 8072 --- [my-hotel] [main] tc.postgres:18                           : Creating container for image: postgres:18
+2026-10-18T04:56:55.000+03:00  INFO 8072 --- [my-hotel] [main] tc.postgres:18                           : Container postgres:18 is starting: 539ee5d568fdc7667e1a9e27c4387be520c645bd00e1c48d2f77f6cf26ea2fe3
+2026-10-18T04:56:56.843+03:00  INFO 8072 --- [my-hotel] [main] tc.postgres:18                           : Container postgres:18 started in PT1.9724142S
+2026-10-18T04:56:56.843+03:00  INFO 8072 --- [my-hotel] [main] tc.postgres:18                           : Container is started (JDBC URL: jdbc:postgresql://localhost:57362/test?loggerLevel=OFF)
+2026-10-18T04:56:56.908+03:00  INFO 8072 --- [my-hotel] [main] c.m.m.repository.HotelRepositoryTest     : Starting HotelRepositoryTest using Java 17.0.19 with PID 8072 (started by fjamc in C:\Users\fjamc\OneDrive\Desktop\my-hotel)
+2026-10-18T04:56:56.909+03:00 DEBUG 8072 --- [my-hotel] [main] c.m.m.repository.HotelRepositoryTest     : Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-10-18T04:56:56.910+03:00  INFO 8072 --- [my-hotel] [main] c.m.m.repository.HotelRepositoryTest     : No active profile set, falling back to 1 default profile: "dev"
+2026-10-18T04:56:57.069+03:00  INFO 8072 --- [my-hotel] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-18T04:56:57.089+03:00  INFO 8072 --- [my-hotel] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 3 JPA repository interfaces.
+2026-10-18T04:56:57.270+03:00  INFO 8072 --- [my-hotel] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:57362/test?loggerLevel=OFF (PostgreSQL 18.6)
+2026-10-18T04:56:57.295+03:00  INFO 8072 --- [my-hotel] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-10-18T04:56:57.296+03:00  INFO 8072 --- [my-hotel] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.007s)
+2026-10-18T04:56:57.311+03:00  INFO 8072 --- [my-hotel] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-10-18T04:56:57.350+03:00  INFO 8072 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-10-18T04:56:57.358+03:00  INFO 8072 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1 - create tables"
+2026-10-18T04:56:57.397+03:00  INFO 8072 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2"
+2026-10-18T04:56:57.428+03:00  INFO 8072 --- [my-hotel] [main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "public", now at version v2 (execution time 00:00.030s)
+2026-10-18T04:56:57.454+03:00  INFO 8072 --- [my-hotel] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-18T04:56:57.482+03:00  INFO 8072 --- [my-hotel] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-18T04:56:57.483+03:00  INFO 8072 --- [my-hotel] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-10-18T04:56:57.500+03:00  INFO 8072 --- [my-hotel] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@5f37597b
+2026-10-18T04:56:57.500+03:00  INFO 8072 --- [my-hotel] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-10-18T04:56:57.504+03:00  WARN 8072 --- [my-hotel] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-10-18T04:56:57.510+03:00  INFO 8072 --- [my-hotel] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:57362/test?loggerLevel=OFF]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: test/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-18T04:56:57.614+03:00  INFO 8072 --- [my-hotel] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-18T04:56:57.637+03:00  INFO 8072 --- [my-hotel] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-18T04:56:57.713+03:00  INFO 8072 --- [my-hotel] [main] c.m.m.repository.HotelRepositoryTest     : Started HotelRepositoryTest in 0.862 seconds (process running for 21.648)
+2026-10-18T04:56:57.732+03:00 DEBUG 8072 --- [my-hotel] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        hotel
+        (location, name) 
+    values
+        (?, ?)
+2026-10-18T04:56:57.744+03:00  WARN 8072 --- [my-hotel] [main] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 23502
+2026-10-18T04:56:57.745+03:00  WARN 8072 --- [my-hotel] [main] org.hibernate.orm.jdbc.error             : ERROR: null value in column "name" of relation "hotel" violates not-null constraint
+  Detail: Failing row contains (1, null, Morocco).
+2026-10-18T04:56:57.787+03:00 DEBUG 8072 --- [my-hotel] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        hotel
+        (location, name) 
+    values
+        (?, ?)
+2026-10-18T04:56:57.789+03:00  WARN 8072 --- [my-hotel] [main] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 23502
+2026-10-18T04:56:57.789+03:00  WARN 8072 --- [my-hotel] [main] org.hibernate.orm.jdbc.error             : ERROR: null value in column "location" of relation "hotel" violates not-null constraint
+  Detail: Failing row contains (2, Grand Plaza, null).
+2026-10-18T04:56:58.507+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Updating hotel with id=1
+2026-10-18T04:56:58.509+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Hotel updated successfully. hotelId=1
+2026-10-18T04:56:58.521+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Creating hotel with name=Grand Plaza location Morocco
+2026-10-18T04:56:58.521+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Hotel created successfully. hotelId=1
+2026-10-18T04:56:58.525+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Updating hotel with id=1
+2026-10-18T04:56:58.526+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Hotel updated successfully. hotelId=1
+2026-10-18T04:56:58.530+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Getting all hotels
+2026-10-18T04:56:58.544+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Getting hotel with id=1
+2026-10-18T04:56:58.548+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Updating hotel with id=999
+2026-10-18T04:56:58.552+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Getting hotel with id=999
+2026-10-18T04:56:58.555+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Deleting hotel with id=1
+2026-10-18T04:56:58.556+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Hotel deleted with id=1
+2026-10-18T04:56:58.559+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Getting all hotels
+2026-10-18T04:56:58.565+03:00  INFO 8072 --- [my-hotel] [main] com.maz.my_hotel.service.HotelService    : Deleting hotel with id=999
+2026-10-18T04:56:58.602+03:00  INFO 8072 --- [my-hotel] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-10-18T04:56:58.607+03:00  INFO 8072 --- [my-hotel] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-10-18T04:56:58.613+03:00  INFO 8072 --- [my-hotel] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-10-18T04:56:58.614+03:00  INFO 8072 --- [my-hotel] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-10-18T04:56:58.615+03:00  INFO 8072 --- [my-hotel] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-10-18T04:56:59.188+03:00  INFO 8072 --- [my-hotel] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
